@@ -1,6 +1,5 @@
 @echo off
-set tool_version=1.6
-REM chcp 65001 >nul
+set tool_version=1.8
 title MANU
 color 0a
 cls
