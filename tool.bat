@@ -19,7 +19,6 @@ echo [2] spicetify update(Extra option)
 echo [3] Scrcpy
 echo [4] Winutil
 echo [5] Exit
-echo test
 REM set /p choice=Choose an option: 
 choice /N /C 12345 /M "Chose an option:"
 
@@ -323,10 +322,12 @@ echo This is for test!
 timeout /t 2 >nul
 echo Everything you see is subject to change!
 timeout /t 2 >nul
-echo Press any key to continue
+echo Press any key to continue...
 pause >nul
 cls
 echo Kaiyum femboy 
+timeout /t 3 >nul
+echo :)
 timeout /t 3 >nul
 echo Going to menu in a moment...
 timeout /t 2 >nul
