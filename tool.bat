@@ -274,6 +274,7 @@ if "%errorlevel%"=="1" goto menu
 color 09
 title Scrcpy
 cls 
+goto underway
 echo Running Scrcpy...
 dir "scrcpy.exe" /s /b 2>nul
 scrcpy --prefer-text --video-playback --audio-source=playback --max-video-size 1M --audio-bit-rate 6M --render-driver=opengl
