@@ -1,7 +1,8 @@
 @echo off
-set tool_version=1.3
+set tool_version=1.4
 title MANU
 color 0a
+goto changelog
 
 :menu
 title MANU
@@ -311,6 +312,21 @@ CHOICE /n /c 12 /m "Chose an option:"
 
 if errorlevel 2 goto exit
 if errorlevel 1 goto menu
+
+:changelog
+timeout /t 3 >nul
+echo This is for test!
+timeout /t 2 >nul
+echo Everything you see is subject to change!
+timeout /t 2 >nul
+echo Press any key to continue
+pause >nul
+cls
+echo Kaiyum femboy (•_•)
+timeout /t 3 >nul
+echo Going to menu in a moment...
+timeout /t 2 >nul
+goto menu
 
 :exit
 cls
