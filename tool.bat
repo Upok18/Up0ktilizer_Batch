@@ -1,4 +1,5 @@
 @echo off
+set tool_version=1.2
 title MANU
 color 0a
 
