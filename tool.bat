@@ -4,14 +4,15 @@ title MANU
 color 0a
 cls
 
-goto changelog
+call :changelog
+goto :menu
 
 :menu
 title MANU
 color 0a
 cls
 echo ==============================
-echo       Up0ktilizer (ver 1.6)
+echo       Up0ktilizer (ver %tool_version%)
 echo ==============================
 echo [1] Yt-dlp
 echo [2] spicetify update(Extra option)
