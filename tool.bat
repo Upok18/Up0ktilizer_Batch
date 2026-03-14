@@ -1,5 +1,6 @@
 @echo off
 set tool_version=1.6
+chcp 65001 >nul
 title MANU
 color 0a
 cls
@@ -326,7 +327,7 @@ timeout /t 2 >nul
 echo Press any key to continue
 pause >nul
 cls
-echo Kaiyum femboy (•_•)
+echo Kaiyum femboy ✌😭
 timeout /t 3 >nul
 echo Going to menu in a moment...
 timeout /t 2 >nul
