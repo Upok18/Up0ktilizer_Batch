@@ -11,23 +11,13 @@ echo Checking latest version...
 curl -sL "%verURL%" -o "%tempVer%"
 set /p remoteVer=<"%tempVer%"
 
-if exist "%tempTool%" (
-    findstr "%remoteVer%" "%tempTool%" >nul
-    if %errorlevel%==0 (
-        echo Tool already up to date.
-        goto runTool
-    )
-)
-
-echo Updating tool...
+echo Downloading latest tool...
 curl -sL "%toolURL%" -o "%tempTool%"
 
-:runTool
 call "%tempTool%"
 
 echo Cleaning up...
-
 del "%tempTool%" >nul 2>&1
 del "%tempVer%" >nul 2>&1
 
-exit
+pause
