@@ -2,7 +2,7 @@
 title Up0ktilizer Loader
 
 set tempFile=%temp%\up0k_tool.bat
-set url=https://raw.githubusercontent.com/Upok18/Up0ktilizer/main/tool.bat?%random%
+set url=https://raw.githubusercontent.com/Upok18/Up0ktilizer/refs/heads/main/tool.bat?%random%
 
 del "%tempFile%" >nul 2>&1
 
