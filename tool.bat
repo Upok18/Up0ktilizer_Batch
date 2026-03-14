@@ -2,6 +2,7 @@
 set tool_version=1.6
 title MANU
 color 0a
+cls
 
 goto changelog
 
