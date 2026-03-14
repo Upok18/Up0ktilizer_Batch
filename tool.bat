@@ -1,5 +1,5 @@
 @echo off
-set tool_version=1.4
+set tool_version=1.6
 title MANU
 color 0a
 
@@ -17,6 +17,7 @@ echo [2] spicetify update(Extra option)
 echo [3] Scrcpy
 echo [4] Winutil
 echo [5] Exit
+echo test
 REM set /p choice=Choose an option: 
 choice /N /C 12345 /M "Chose an option:"
 
