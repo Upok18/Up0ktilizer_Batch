@@ -1,5 +1,5 @@
 @echo off
-set tool_version=1.2
+set tool_version=1.3
 title MANU
 color 0a
 
@@ -300,8 +300,8 @@ REM Start-Process powershell -Verb RunAs -ArgumentList "-NoProfile -NoExit -Exec
 REM where Winwutil.bat 2>nul
 
 REM start Winutil.bat 2>nul
-echo.
-pause
+echo Press any key to continue...
+pause >nul
 
 cls
 echo.
