@@ -7,7 +7,8 @@ set url=https://raw.githubusercontent.com/Upok18/Up0ktilizer/refs/heads/main/too
 del "%tempFile%" >nul 2>&1
 
 echo Downloading latest version...
-curl -L "%url%" -o "%tempFi
+curl -L "%url%" -o "%tempFile%"
+
 echo Starting tool...
 call "%tempFile%"
 
