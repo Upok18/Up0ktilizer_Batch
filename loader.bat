@@ -1,16 +1,16 @@
 @echo off
 title Up0ktilizer Loader
 
-set url=https://raw.githubusercontent.com/Upok18/Up0ktilizer/refs/heads/main/tool.bat
-set tempFile=%temp%\Up0ktilizer_tool.bat
+set tempFile=%temp%\up0k_tool.bat
+set url=https://raw.githubusercontent.com/Upok18/Up0ktilizer/main/tool.bat?%random%
 
-echo Downloading Up0ktilizer...
-curl -L -o "%tempFile%" "%url%"
+del "%tempFile%" >nul 2>&1
+
+echo Downloading latest version...
+curl -L "%url%" -o "%tempFile%"
 
 echo Starting tool...
 call "%tempFile%"
 
-echo Cleaning up...
 del "%tempFile%"
-
 exit
