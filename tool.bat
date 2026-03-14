@@ -2,6 +2,7 @@
 set tool_version=1.4
 title MANU
 color 0a
+
 goto changelog
 
 :menu
