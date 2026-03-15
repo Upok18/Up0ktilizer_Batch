@@ -1,5 +1,5 @@
 @echo off
-set tool_version=2.1
+set tool_version=2.3
 title MANU
 color 0a
 cls
@@ -324,13 +324,23 @@ echo Everything you see is subject to change!
 timeout /t 2 >nul
 echo Press any key to continue...
 pause >nul
-cls
+REM cls
+
+goto changelog
+
+:ky
+echo You have found the Easter egg!
+timeout /t 2 >nul
 echo Kaiyum femboy 
-timeout /t 3 >nul
+timeout /t 2 >nul
 echo :)
 timeout /t 3 >nul
-echo Going to menu in a moment...
+echo I know that from the begining
 timeout /t 2 >nul
+echo and here is the prove
+start 
+REM echo press any key to continue...
+REM pause >nul
 goto menu
 
 :exit
