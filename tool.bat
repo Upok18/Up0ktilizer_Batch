@@ -2,20 +2,21 @@
 set tool_version=0.8
 title MANU
 color 0a
-curl -s -o "%temp%\Ascii.txt" https://raw.githubusercontent.com/Upok18/Up0ktilizer/refs/heads/main/art.txt
 cls
+
+curl -s -o "%temp%\Ascii.txt" https://raw.githubusercontent.com/Upok18/Up0ktilizer/refs/heads/main/Ascii.txt
 
 REM call :changelog
 goto :menu
 
 :menu
-title MANU
+title MANU v%tool_version%
 color 0a
 cls
-type %temp\Ascii.txt%
-echo ==============================
-echo       Up0ktilizer (v%tool_version%)
-echo ==============================
+type %temp\Ascii.txt
+REM echo ==============================
+REM echo       Up0ktilizer (v%tool_version%)
+REM echo ==============================
 echo [1] SFC and DISM (File Repair)
 echo [2] spicetify update(Extra option)
 echo [3] Scrcpy
