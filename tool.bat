@@ -325,7 +325,7 @@ scrcpy --prefer-text --video-playback --audio-source=playback --max-video-size 1
 title Winutil
 color 0B
 cls
-goto underway
+REM goto underway
 echo ============================
 echo [1] Up0ktilizer
 echo ============================
