@@ -343,7 +343,7 @@ if errorlevel 1 goto up
 title Up0ktilizer
 color 0a
 cls
-goto underway
+REM goto underway
 
 echo ========================
 echo Welcome to Up0ktilizer
