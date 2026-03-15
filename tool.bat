@@ -339,15 +339,7 @@ REM where Winwutil.bat 2>nul
 REM start Winutil.bat 2>nul
 echo Press any key to continue...
 pause >nul
-
-cls
-echo.
-echo [1] Main Menu 
-echo [2] Exit
-CHOICE /n /c 12 /m "Chose an option:"
-
-if errorlevel 2 goto exit
-if errorlevel 1 goto menu
+goto menu
 
 :changelog
 timeout /t 3 >nul
