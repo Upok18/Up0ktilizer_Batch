@@ -13,7 +13,7 @@ goto :menu
 title MANU v%tool_version%
 color 0a
 cls
-type %temp\Ascii.txt
+type "%~dp0aAscii.txt"
 REM echo ==============================
 REM echo       Up0ktilizer (v%tool_version%)
 REM echo ==============================
