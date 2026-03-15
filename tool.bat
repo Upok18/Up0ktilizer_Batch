@@ -1,5 +1,5 @@
 @echo off
-set tool_version=0.8
+set tool_version=0.9
 title MANU
 color 0a
 cls
@@ -320,29 +320,130 @@ echo Running Scrcpy...
 dir "scrcpy.exe" /s /b 2>nul
 scrcpy --prefer-text --video-playback --audio-source=playback --max-video-size 1M --audio-bit-rate 6M --render-driver=opengl
 
+::Example winget install -e --id Name.Name --silent --accept-package-agreements --accept-source-agreements
 :winutil
-title Winutil(Chris Titus)
+title Winutil
+color 0B
+cls
+goto underway
+echo ============================
+echo [1] Up0ktilizer
+echo ============================
+echo [2] Chris Titus(Recommended)
+echo ============================
+echo [3] Go Back
+echo ============================
+choice /c 123 /n /m "Chose an option:"
+
+if errorlevel 3 goto menu
+if errorlevel 2 goto titus
+if errorlevel 1 goto up
+
+:up
+title Up0ktilizer
+color 0a
+cls
+goto underway
+
+echo ========================
+echo Welcome to Up0ktilizer
+echo ========================
+echo [1] Install app/software
+echo [2] Upgrade app/software
+echo [3] Unistall app/software
+echo [4] Go back
+echo [5] Main Menu
+echo only winget is available!
 echo.
-echo Running Win Utility....
-timeout /t 6 >nul
-echo Opening Win Utility...
+choice /n /c 1234 /m "Chose an option:"
 
-echo x=MsgBox("Do not panic if it doesn't appear just wait for a second!",0+64,"Winutil") > "%temp%\winutil.vbs"
-cscript //nologo "%temp%\winutil.vbs"
-del "%temp%\winutil.vbs" >nul 2>&1
+if errorlevel 5 goto menu
+if errorlevel 4 goto winutil
+if errorlevel 3 goto menuupun
+if errorlevel 2 goto menuupu
+if errorlevel 1 goto menuupi
+
+:menuupi
+title Select
+color 0b
+cls
+set browser_count=5
+set multi_count=2
+set utili_count=0
+echo.
+echo ------------------------------------------------------------------------------
+echo                         Select Any Option to Continue...
+echo ==============================================================================
+echo [1] Browsers          [2]Multimedias          [3]Utilities          [4]Go Back
+echo ==============================================================================
+choice /n /c 1234 /m ":"
+
+if errorlevel 4 goto up
+if errorlevel 3 goto utiupi
+if errorlevel 2 goto multiupi
+if errorlevel 1 goto broupi
+
+:broupi
+title Up0ktilizer Browser
+color 0a
+cls
+call :underway
+echo.
+echo.
+echo --------------------------------------------------------------------------------------------------------
+echo                                             B R O W S E R 
+echo ========================================================================================================
+echo [1] Chrome             [2] Brave             [3] Firefox              [4] Zen               [5] Opera
+echo ========================================================================================================
+echo Available Browsers:"%browser_count%"
+echo [B] Go back [C] Exit
+choice /n /c 12345BC /m "Chose an option:"
 
 
-REM powershell -Command "Start-Process powershell -Verb RunAs -ArgumentList '-NoLogo -NoProfile -ExecutionPolicy Bypass -Command ""irm https://christitus.com/win | iex""'" 
 
-REM echo Do not panic if it doesn't appear just wait for a second!
-powershell -Command "Start-Process powershell -Verb RunAs -ArgumentList '-NoLogo -NoProfile -ExecutionPolicy Bypass -Command ""irm https://christitus.com/win | iex""'" >nul
-REM Start-Process powershell -Verb RunAs -ArgumentList "-NoProfile -NoExit -ExecutionPolicy Bypass -Command `"irm https://christitus.com/win | iex`"" -NoNewWindow
-REM where Winwutil.bat 2>nul
+:multiupi
+title Up0ktilizer Browser
+color 0a
+cls
+echo.
+echo.
+echo --------------------------------------------------------------------------------------------------------
+echo                                           M U L T I M E D I A 
+echo ========================================================================================================
+echo [1] Audacity           [2] VLC 
+echo ========================================================================================================
+echo Available Browsers:"%multi_count%"
+echo [B] Go back [C] Exit
+choice /n /c 12BC /m "Chose an option:"
 
-REM start Winutil.bat 2>nul
-echo Press any key to continue...
-pause >nul
-goto menu
+if errorlevel 4 goto Exit
+if errorlevel 3 goto upi
+if errorlevel 2 (
+call :underway
+)
+
+if errorlevel 1 (
+title Installing
+cls
+echo.
+timeout /t 1 >nul
+echo Installing Audacity...
+timeout /t 3 >nul
+winget install -e --id Audacity.Audacity --silent --accept-package-agreements --accept-source-agreements
+timeout /t 2 >nul
+echo Done 
+echo. 
+goto esc
+ 
+:utiupi
+goto underway
+
+:esc 
+echo [1] Up0ktilizer menu   [2] exit
+choice /n /c 12 /m "Chose an option:"
+
+if errorlevel 2 exit
+if errorlevel 1 goto up
 
 :changelog
 timeout /t 3 >nul
