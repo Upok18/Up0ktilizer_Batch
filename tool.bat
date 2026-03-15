@@ -1,5 +1,5 @@
 @echo off
-set tool_version=2.3
+set tool_version=0.6
 title MANU
 color 0a
 cls
@@ -12,7 +12,7 @@ title MANU
 color 0a
 cls
 echo ==============================
-echo       Up0ktilizer (ver %tool_version%)
+echo       Up0ktilizer (v%tool_version%)
 echo ==============================
 echo [1] SFC and DISM (File Repair)
 echo [2] spicetify update(Extra option)
