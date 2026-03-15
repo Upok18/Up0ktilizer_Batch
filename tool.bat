@@ -1,7 +1,8 @@
 @echo off
-set tool_version=0.6
+set tool_version=0.8
 title MANU
 color 0a
+curl -s -o "%temp%\Ascii.txt" https://raw.githubusercontent.com/Upok18/Up0ktilizer/refs/heads/main/art.txt
 cls
 
 REM call :changelog
@@ -11,6 +12,7 @@ goto :menu
 title MANU
 color 0a
 cls
+type %temp\Ascii.txt%
 echo ==============================
 echo       Up0ktilizer (v%tool_version%)
 echo ==============================
