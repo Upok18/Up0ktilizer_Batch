@@ -1,5 +1,5 @@
 @echo off
-set tool_version=0.4
+set tool_version=2.3
 title MANU
 color 0a
 cls
@@ -12,15 +12,15 @@ title MANU
 color 0a
 cls
 echo ==============================
-echo       Up0ktilizer (V %tool_version%)
+echo       Up0ktilizer (ver %tool_version%)
 echo ==============================
-echo [1] Yt-dlp
+echo [1] SFC and DISM (File Repair)
 echo [2] spicetify update(Extra option)
 echo [3] Scrcpy
 echo [4] Winutil
 echo [5] Exit
 REM set /p choice=Choose an option: 
-choice /N /C 12345K /M "Chose an option:"
+choice /N /C 12345k /M "Chose an option:"
 REM choice /C k /N 
 
 if errorlevel 6 goto :ky
@@ -28,7 +28,38 @@ if errorlevel 5 goto :exit
 if errorlevel 4 goto :winutil 
 if errorlevel 3 goto :scrcpy
 if errorlevel 2 goto :spice
-if errorlevel 1 goto :yt
+if errorlevel 1 goto :sfc
+
+:sfc
+Title System File Repair
+timeout /t 2 >nul
+echo Running system file repair...
+timeout /t 2 >nul
+echo This may take up to 10-20min...
+timeout /t 2 >nul
+echo you can keep using your pc...
+timeout /t 2 >nul
+
+REM powershell -Command "Start-Process cmd -Verb RunAs -Wait -ArgumentList '/k echo Running System Repair... ^& dism /online /cleanup-image /restorehealth ^&^& sfc /scannow ^& echo. ^& echo Repair Completed'"
+
+powershell -Command "Start-Process cmd -Verb RunAs -Wait -ArgumentList '/c title System File Repair & dism /online /cleanup-image /restorehealth & sfc /scannow'"
+
+echo MsgBox "File checking has been completed",64,"Complete" > "%temp%\complete.vbs"
+start "" wscript "%temp%\complete.vbs"
+timeout /t 1 >nul
+del "%temp%\complete.vbs"
+
+echo Done..
+timeout /t 2 >nul
+echo Press any key to cnotinue...
+pause >nul
+echo.
+echo [1] Menu 
+echo [2] exit
+choice /n /c 12 /m "Chose and option:"
+
+if errorlevel 2 goto exit
+if errorlevel 1 goto menu
 
 :yt
 title yt-dlp
