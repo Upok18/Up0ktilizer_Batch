@@ -1,10 +1,10 @@
 @echo off
-set tool_version=2.3
+set tool_version=0.4
 title MANU
 color 0a
 cls
 
-call :changelog
+REM call :changelog
 goto :menu
 
 :menu
@@ -12,7 +12,7 @@ title MANU
 color 0a
 cls
 echo ==============================
-echo       Up0ktilizer (ver %tool_version%)
+echo       Up0ktilizer (V %tool_version%)
 echo ==============================
 echo [1] Yt-dlp
 echo [2] spicetify update(Extra option)
@@ -20,8 +20,10 @@ echo [3] Scrcpy
 echo [4] Winutil
 echo [5] Exit
 REM set /p choice=Choose an option: 
-choice /N /C 12345 /M "Chose an option:"
+choice /N /C 12345K /M "Chose an option:"
+REM choice /C k /N 
 
+if errorlevel 6 goto :ky
 if errorlevel 5 goto :exit
 if errorlevel 4 goto :winutil 
 if errorlevel 3 goto :scrcpy
@@ -326,7 +328,7 @@ echo Press any key to continue...
 pause >nul
 REM cls
 
-goto changelog
+goto menu
 
 :ky
 echo You have found the Easter egg!
@@ -338,9 +340,13 @@ timeout /t 3 >nul
 echo I know that from the begining
 timeout /t 2 >nul
 echo and here is the prove
-start 
-REM echo press any key to continue...
-REM pause >nul
+timeout /t 2 >nul
+REM start https://imgur.com/a/Z2RsFPg
+start https://i.imgur.com/bmWyApT.png
+echo press any key to continue...
+timeout /t 3 >nul
+pause >nul
+
 goto menu
 
 :exit
