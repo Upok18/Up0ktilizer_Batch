@@ -108,18 +108,33 @@ dir "scrcpy.exe" /s /b 2>nul
 scrcpy --prefer-text --video-playback --audio-source=playback --max-video-size 1M --audio-bit-rate 6M --render-driver=opengl
 
 ::if errorlevel ? (
+::title Name
+::cls 
+::echo.
+::echo Details
+::timeout /t 1 >nul
+::REM echo [1] Install [2] Go Back 
+::echo.
+::choice /n /c 12 /m "[1] Install [2] Go Back: "
+
+::if errorlevel 2 goto 
+
+::if errorlevel 1 (
 ::title Installing
 ::cls
 ::echo.
 ::timeout /t 1 >nul
-::echo Installing Name...
+::echo Installing Github...
 ::timeout /t 3 >nul
-::winget install -e --id Name.Name --silent --accept-package-agreements --accept-source-agreements
+::winget install -e --id GitHub.GitHubDesktop --silent --accept-package-agreements --accept-source-agreements
 ::timeout /t 2 >nul
 ::echo Done 
 ::echo. 
-::Press any key to continue....
+::echo Press any key to continue....
+::pause >nul
 ::goto esc
+::)
+
 ::)
 
 :winutil
