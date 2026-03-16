@@ -1,5 +1,5 @@
 @echo off
-set tool_version=1.2
+set tool_version=1.3
 title MANU
 color 0a
 cls
@@ -67,252 +67,21 @@ choice /n /c 12 /m "Chose and option:"
 if errorlevel 2 goto exit
 if errorlevel 1 goto menu
 
-:yt
-title yt-dlp
-cls
-goto underway
-echo Looking for yt-dlp...
-where yt-dlp >nul 2>nul
-
-if %errorlevel%==0 (
-echo Found yt-dlp
-timeout /t 2 >nul
-goto ytmenu
-) else (
-echo yt-dlp not found
-timeout /t 2 >nul
-goto yins
-)
-
-if exit "%path%" (
-cd /d "%path%"
-goto ytmenu
-) else (
-echo Sorry theres no such thing as yt-dlp :-( 
-REM choice /m "Have you Installed it in your pc??" /c YN
-CHOICE /N /C YN /M "(Have you Installed it in your pc)"
-)
-
-IF ERRORLEVEL ==NO GOTO yins
-IF ERRORLEVEL ==YES GOTO yins
-
-:yins
-echo Select install location...
-
-:: Open folder picker
-for /f "delims=" %%i in ('powershell -command "Add-Type -AssemblyName System.Windows.Forms; $f=New-Object System.Windows.Forms.FolderBrowserDialog; if($f.ShowDialog() -eq 'OK'){ $f.SelectedPath }"') do set installpath=%%i
-
-if not defined installpath (
-echo No folder selected.
-pause
-exit
-)
-
-echo.
-echo Installing yt-dlp to:
-echo %installpath%
-timeout /t 2 >nul
-
-echo Select install folder...
-
-:: Folder picker
-for /f "delims=" %%i in ('powershell -command "Add-Type -AssemblyName System.Windows.Forms; $f=New-Object System.Windows.Forms.FolderBrowserDialog; if($f.ShowDialog() -eq 'OK'){ $f.SelectedPath }"') do set installpath=%%i
-
-if not defined installpath (
-echo No folder selected.
-pause
-exit
-)
-
-echo.
-echo Installing to:
-echo %installpath%
-timeout /t 2 >nul
-
-:: Download yt-dlp
-echo Downloading yt-dlp...
-powershell -command "Invoke-WebRequest https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe -OutFile '%installpath%\yt-dlp.exe'"
-
-:: Download FFmpeg
-echo Downloading FFmpeg...
-powershell -command "Invoke-WebRequest https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip -OutFile '%installpath%\ffmpeg.zip'"
-
-:: Extract FFmpeg
-echo Extracting FFmpeg...
-powershell -command "Expand-Archive '%installpath%\ffmpeg.zip' '%installpath%' -Force"
-
-del "%installpath%\ffmpeg.zip"
-
-echo.
-echo ===============================
-echo Installation Finished
-echo yt-dlp: %installpath%\yt-dlp.exe
-echo FFmpeg extracted in install folder
-echo ===============================
-
-pause
-goto ysmenu
-
-:ysmenu
-echo [1] yt-dlp menu
-echo [2] main menu
-echo [3] Exit
-REM set /p choice=Choose an option: 
-CHOICE /N /C 12 /M "Chose an option!:"
-
-if errorlevel 3 goto exit
-if errorlevel 2 goto menu
-if errorlevel 1 goto ytmenu
-
-:ytmenu
-title Yt-dlp
-color 0b
-cls
-echo ==============================
-echo            Yt-dlp
-echo ==============================
-echo [1] Download Video
-echo [2] Download Audio
-echo [3] Back to menu
-REM set /p choice=Choose an option: 
-choice /N /C 123 /M "Chose an option:"
-
-if errorlevel 3 goto menu
-if errorlevel 2 goto mp3
-if errorlevel 1 goto video
-
-:pickfolder 
-echo.
-echo Select download folder...
-
-for /f "delims=" %%i in ('powershell -command "Add-Type -AssemblyName System.Windows.Forms; $f=New-Object System.Windows.Forms.FolderBrowserDialog; if($f.ShowDialog() -eq 'OK'){ $f.SelectedPath }"') do set dpath=%%i
-
-if not defined dpath (
-echo No folder selected.
-timeout /t 2 >nul
-goto ytmenu
-)
-
-goto download
-
-:video
-set type=video
-goto pickfolder
-
-:mp3
-set type=mp3
-goto pickfolder
-
-:playlist
-set type=playlist
-goto pickfolder
-
-:download
-color 0b
-cls
-echo selected folder:%dpath%
-echo.
-
-set /p url=Paste video url:
-set /p name=Entar file name(leave it blank for default):
-
-if "%name%"=="" set name=%%(title)s
-
-if "%type%"=="video" (
-yt-dlp -f "bv*+ba/b" --embed-thumbnail -o "%dpath%\%name%.%%(ext)s" "%url%"
-)
-
-if "%type%"=="mp3" (
-yt-dlp -x --audio-format mp3 --embed-thumbnail -o "%dpath%\%name%.%%(ext)s" "%url%"
-)
-
-echo.
-echo Download finished!...
-pause
-echo
-echo [1] Main Menu
-echo [2] Yt-dlp Menu
-echo [3] exit
-choice /n /c 123 /m "Chose and option:"
-
-if errorlevel 3 goto exit
-if errorlevel 2 goto ytmenu
-if errorlevel 1 goto menu
-
 :underway
 color 0C
 echo This command is stil in developement....
-timeout /t 3 >NULL
-echo [1] Go back to menu
-echo [2] Exit
+timeout /t 2 >NULL
+echo It will be added soon...
+pause
+exit /b
+REM echo [1] Go back to menu
+REM echo [2] Exit
 REM set /p choice=Choose an option: 
-choice /N /C 12 /M "Chose an option:"
+REM choice /N /C 12 /M "Chose an option:"
 
 if "%errorlevel%"=="2" goto :exit
 if "%errorlevel%"=="1" goto :menu
 
-:spice
-title spicetify updater 
-color 0a
-cls
-goto underway
-echo lookin for spicetify...
-REM where spicetify.exe >nul 2>nul
-dir "spicetify.exe" /s /b 2>nul
-
-if %errorlevel%==1 (
-echo Found Spicetify...
-timeout /t 2 >NULL
-echo Updating Spicetify.....
-spicetify update 
-pause
-goto smenu
-) else (
-echo Spicetify not Found
-timeout /t 2 >NULL
-set /p path=Enter Spicetify path:
-)
-
-if exit "%path%" (
-cd /d "%path%"
-spicetify update
-pause
-goto smenu
-) else (
-echo Sorry theres no such thing as spicetify :-( 
-REM choice /m "Have you Installed it in your pc??" /c YN
-CHOICE /N /C YN /M "(Have you Installed it in your pc)"
-)
-
-IF ERRORLEVEL ==NO GOTO sins
-IF ERRORLEVEL ==YES GOTO sins
-
-:sins
-title Spicetify Installer
-cls 
-echo Do you wan to intall it??
-CHOICE /N /C YN /M "Do you want to install it??"
-If %errorlevel%==2 (
-echo spicetify installison cancelled
-timeout /t 6 >NUL 
-goto smenu
-) else (
-echo Installing Spicetify
-iwr -useb https://raw.githubusercontent.com/spicetify/cli/main/install.ps1 | iex
-echo installison completed!
-pause 
-goto smenu
-
-
-:smenu
-
-echo [1] Go back to menu
-echo [2] Exit
-REM set /p choice=Choose an option: 
-CHOICE /N /C 12 /M "Chose an option!:"
-
-if "%errorlevel%"=="2" goto exit
-if "%errorlevel%"=="1" goto menu
 
 :scrcpy
 color 09
@@ -323,7 +92,21 @@ echo Running Scrcpy...
 dir "scrcpy.exe" /s /b 2>nul
 scrcpy --prefer-text --video-playback --audio-source=playback --max-video-size 1M --audio-bit-rate 6M --render-driver=opengl
 
-::Example winget install -e --id Name.Name --silent --accept-package-agreements --accept-source-agreements
+::if errorlevel ? (
+::title Installing
+::cls
+::echo.
+::timeout /t 1 >nul
+::echo Installing Name...
+::timeout /t 3 >nul
+::winget install -e --id Name.Name --silent --accept-package-agreements --accept-source-agreements
+::timeout /t 2 >nul
+::echo Done 
+::echo. 
+::Press any key to continue....
+::goto esc
+::)
+
 :winutil
 title Winutil
 color 0B
@@ -370,16 +153,16 @@ if errorlevel 1 goto menuupi
 title Select
 color 0b
 cls
-set browser_count=5
-set multi_count=2
-set utili_count=0
+set browser_count=Coming soon
+set multi_count=1
+set utili_count=1
 echo.
-echo ------------------------------------------------------------------------------
-echo                         Select Any Option to Continue...
-echo ==============================================================================
-echo [1] Browsers          [2]Multimedias          [3]Utilities          [4]Go Back
-echo ==============================================================================
-choice /n /c 1234 /m ":"
+echo     ------------------------------------------------------------------------------
+echo                             Select Any Option to Continue...
+echo     ==============================================================================
+echo     [1] Browsers          [2]Multimedias          [3]Utilities          [4]Go Back
+echo     ==============================================================================
+choice /n /c 1234 /m "    :"
 
 if errorlevel 4 goto up
 if errorlevel 3 goto utiupi
@@ -391,6 +174,7 @@ title Up0ktilizer Browser
 color 0a
 cls
 call :underway
+goto menuupi
 echo.
 echo.
 echo --------------------------------------------------------------------------------------------------------
@@ -398,11 +182,38 @@ echo                                             B R O W S E R
 echo ========================================================================================================
 echo [1] Chrome             [2] Brave             [3] Firefox              [4] Zen               [5] Opera
 echo ========================================================================================================
-echo Available Browsers:"%browser_count%"
+echo Available Browsers:%browser_count%
+echo.
 echo [B] Go back [C] Exit
 choice /n /c 12345BC /m "Chose an option:"
 
+if errorlevel 7 goto :exit
+if errorlevel 6 goto menuupi
 
+if errorlevel 5 (
+call :underway
+goto menuupi
+)
+
+if errorlevel 4 (
+call :underway
+goto menuupi
+)
+
+if errorlevel 3 (
+call :underway
+goto menuupi
+)
+
+if errorlevel 2 (
+call :underway
+goto menuupi
+)
+
+if errorlevel 1 (
+call :underway
+goto menuupi
+)
 
 :multiupi
 title Up0ktilizer Browser
@@ -415,37 +226,105 @@ echo                                           M U L T I M E D I A
 echo ========================================================================================================
 echo [1] Audacity           [2] VLC 
 echo ========================================================================================================
-echo Available Browsers:"%multi_count%"
+echo Available Browsers:%multi_count%
+echo.
 echo [B] Go back [C] Exit
 choice /n /c 12BC /m "Chose an option:"
 
 if errorlevel 4 goto Exit
 if errorlevel 3 goto upi
+
 if errorlevel 2 (
 call :underway
+goto menuupi
 )
 
 if errorlevel 1 (
-title Installing
+title Audacity
 cls
 echo.
+echo Audacity is the world’s most popular free software for recording and editing audio. 
+echo So if you're producing music, a podcast, or just playing around with audio,
+echo Audacity is for you.
 timeout /t 1 >nul
+echo.
+REM echo [1] Install [2] Go Back 
+choice /n /c 12 /m "[1] Install [2] Go Back: "
+
+if errorlevel 2 goto :multiupi
+
+if errorlevel 1 (
 echo Installing Audacity...
 timeout /t 3 >nul
 winget install -e --id Audacity.Audacity --silent --accept-package-agreements --accept-source-agreements
 timeout /t 2 >nul
 echo Done 
 echo. 
+echo Press any key to continue....
+pause >nul
 goto esc
+)
+
+)
  
 :utiupi
-goto underway
+title Utilities
+color 0a
+cls
+REM call :underway 
+REM goto :up
+Echo.
+echo.
+echo --------------------------------------------------------------------------------------------------------
+echo                                           U T I L I T I E S
+echo ========================================================================================================
+echo [1] Github           More Coming Soon! 
+echo ========================================================================================================
+echo Available Browsers:%utili_count%
+echo.
+echo [B] Go back [C] Exit
+choice /n /c 1BC /m "Chose an option:"
+
+if errorlevel 3 goto Exit
+if errorlevel 2 goto upi
+
+if errorlevel 1 (
+title Github Desktop
+cls 
+echo.
+echo With GitHub Desktop, you can interact with GitHub using a GUI instead of the command line or a web browser. 
+echo You can use GitHub Desktop to complete most Git commands from your desktop, such as pushing to, pulling from, 
+echo and cloning remote repositories, attributing commits, and creating pull requests, with visual confirmation of changes.
+timeout /t 1 >nul
+REM echo [1] Install [2] Go Back 
+echo.
+choice /n /c 12 /m "[1] Install [2] Go Back: "
+
+if errorlevel 2 goto 
+
+if errorlevel 1 (
+title Installing
+cls
+echo.
+timeout /t 1 >nul
+echo Installing Github...
+timeout /t 3 >nul
+winget install -e --id GitHub.GitHubDesktop --silent --accept-package-agreements --accept-source-agreements
+timeout /t 2 >nul
+echo Done 
+echo. 
+echo Press any key to continue....
+pause >nul
+goto esc
+)
+
+)
 
 :esc 
 echo [1] Up0ktilizer menu   [2] exit
 choice /n /c 12 /m "Chose an option:"
 
-if errorlevel 2 exit
+if errorlevel 2 goto exit
 if errorlevel 1 goto up
 
 :changelog
@@ -496,7 +375,6 @@ goto menu
 )
 )
 
-:exit
 del "%temp%\Ascii.txt" >nul 2>&1
 
 exit
