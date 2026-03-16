@@ -1,5 +1,5 @@
 @echo off
-set tool_version=1.1
+set tool_version=1.2
 title MANU
 color 0a
 cls
