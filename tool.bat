@@ -1,5 +1,5 @@
 @echo off
-set tool_version=1.4
+set tool_version=1.6
 title MANU
 color 0a
 cls
@@ -26,7 +26,7 @@ echo  [3] Scrcpy
 echo  [4] Winutil
 echo  [5] Exit
 REM set /p choice=Choose an option: 
-choice /N /C 12345k /M " Chose an option:"
+choice /N /C 12345k /M " Choose an option:"
 REM choice /C k /N 
 
 if errorlevel 6 goto :ky
@@ -75,7 +75,7 @@ pause >nul
 echo.
 echo [1] Menu 
 echo [2] exit
-choice /n /c 12 /m "Chose and option:"
+choice /n /c 12 /m "Choose and option:"
 
 if errorlevel 2 goto exit
 if errorlevel 1 goto menu
@@ -92,7 +92,7 @@ exit /b
 REM echo [1] Go back to menu
 REM echo [2] Exit
 REM set /p choice=Choose an option: 
-REM choice /N /C 12 /M "Chose an option:"
+REM choice /N /C 12 /M "Choose an option:"
 
 if "%errorlevel%"=="2" goto :exit
 if "%errorlevel%"=="1" goto :menu
@@ -148,7 +148,7 @@ echo [2] Chris Titus(Recommended)
 echo ============================
 echo [3] Go Back
 echo ============================
-choice /c 123 /n /m "Chose an option:"
+choice /c 123 /n /m "Choose an option:"
 
 if errorlevel 3 goto menu
 if errorlevel 2 goto titus
@@ -170,7 +170,7 @@ echo [4] Go back
 echo [5] Main Menu
 echo only winget is available!
 echo.
-choice /n /c 1234 /m "Chose an option:"
+choice /n /c 12345 /m "Choose an option:"
 
 if errorlevel 5 goto menu
 if errorlevel 4 goto winutil
@@ -202,8 +202,8 @@ if errorlevel 1 goto broupi
 title Up0ktilizer Browser
 color 0a
 cls
-call :underway
-goto menuupi
+REM call :underway
+REM goto menuupi
 echo.
 echo.
 echo --------------------------------------------------------------------------------------------------------
@@ -214,7 +214,7 @@ echo ===========================================================================
 echo Available Browsers:%browser_count%
 echo.
 echo [B] Go back [C] Exit
-choice /n /c 12345BC /m "Chose an option:"
+choice /n /c 12345BC /m "Choose an option:"
 
 if errorlevel 7 goto :exit
 if errorlevel 6 goto menuupi
@@ -232,26 +232,62 @@ goto menuupi
 if errorlevel 3 (
 call :underway
 goto menuupi
+
 )
 
-if errorlevel 2 (
-call :underway
-goto menuupi
-)
+if errorlevel 2 goto :aboutbrave
+if errorlevel 1 goto :aboutchrome
 
-if errorlevel 1 (
-title Name
+:aboutbrave
+REM call :underway
+REM goto menuupi
+title Brave
 cls 
 echo.
-echo Details
+echo  Brave is a free, open-source, Chromium-based browser focused on privacy and speed, 
+echo  blocking ads and trackers by default to load pages up to 3x faster than Google Chrome. 
+echo  It features built-in Brave Shields (blocking ads/trackers), Brave Leo AI assistant, 
+echo  and Brave Rewards (optional cryptocurrency earning).
 timeout /t 1 >nul
 REM echo [1] Install [2] Go Back 
 echo.
 choice /n /c 12 /m "[1] Install [2] Go Back: "
 
-if errorlevel 2 goto :broupi
+if errorlevel 2 goto :broupi 
+if errorlevel 1 goto :installbrave
 
-if errorlevel 1 (
+
+:installbrave
+title Installing
+cls
+echo.
+timeout /t 1 >nul
+echo Installing Brave...
+timeout /t 3 >nul
+winget install -e --id Brave.Brave --silent --accept-package-agreements --accept-source-agreements
+timeout /t 1 >nul
+echo Done 
+echo. 
+echo Press any key to continue....
+pause >nul
+goto esc
+
+:aboutchrome
+title Chrome
+cls 
+echo Google Chrome is a fast, secure, 
+echo and widely used cross-platform web browser developed by Google
+echo.
+timeout /t 2 >nul
+REM echo [1] Install [2] Go Back 
+echo.
+choice /n /c 12 /m "[1] Install [2] Go Back: "
+
+if errorlevel 2 goto :broupi
+if errorlevel 1 goto :installchrome 
+
+
+:installchrome
 title Installing
 cls
 echo.
@@ -259,15 +295,12 @@ timeout /t 1 >nul
 echo Installing Chrome...
 timeout /t 3 >nul
 winget install -e --id Google.Chrome --silent --accept-package-agreements --accept-source-agreements
-timeout /t 2 >nul
+timeout /t 1 >nul
 echo Done 
 echo. 
 echo Press any key to continue....
 pause >nul
 goto esc
-)
-
-)
 
 :multiupi
 title Up0ktilizer Browser
@@ -283,7 +316,7 @@ echo ===========================================================================
 echo Available Browsers:%multi_count%
 echo.
 echo [B] Go back [C] Exit
-choice /n /c 12BC /m "Chose an option:"
+choice /n /c 12BC /m "Choose an option:"
 
 if errorlevel 4 goto Exit
 if errorlevel 3 goto upi
@@ -293,7 +326,7 @@ call :underway
 goto menuupi
 )
 
-if errorlevel 1 (
+if %errorlevel%==1 (
 title Audacity
 cls
 echo.
@@ -337,7 +370,7 @@ echo ===========================================================================
 echo Available Browsers:%utili_count%
 echo.
 echo [B] Go back [C] Exit
-choice /n /c 1BC /m "Chose an option:"
+choice /n /c 1BC /m "Choose an option:"
 
 if errorlevel 3 goto Exit
 if errorlevel 2 goto upi
@@ -376,7 +409,7 @@ goto esc
 
 :esc 
 echo [1] Up0ktilizer menu   [2] exit
-choice /n /c 12 /m "Chose an option:"
+choice /n /c 12 /m "Choose an option:"
 
 if errorlevel 2 goto exit
 if errorlevel 1 goto up
