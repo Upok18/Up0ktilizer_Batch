@@ -4,6 +4,7 @@ title MANU
 color 0a
 cls
 
+set tempascii=https://raw.githubusercontent.com/Upok18/Up0ktilizer/refs/heads/main/Ascii.txt
 curl -s -o "%temp%\Ascii.txt" https://raw.githubusercontent.com/Upok18/Up0ktilizer/refs/heads/main/Ascii.txt
 
 REM call :changelog
@@ -13,7 +14,9 @@ goto :menu
 title MANU v%tool_version%
 color 0a
 cls
+echo =========================================================================================================
 type "%temp%\Ascii.txt"
+echo =========================================================================================================
 REM echo ==============================
 REM echo       Up0ktilizer (v%tool_version%)
 REM echo ==============================
@@ -492,5 +495,8 @@ timeout /t 2 >nul
 goto menu
 )
 )
+
+:exit
+del "%temp%\Ascii.txt" >nul 2>&1
 
 exit
