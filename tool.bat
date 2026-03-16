@@ -20,13 +20,13 @@ echo ===========================================================================
 REM echo ==============================
 REM echo       Up0ktilizer (v%tool_version%)
 REM echo ==============================
-echo [1] SFC and DISM (File Repair)
-echo [2] spicetify update(Extra option)
-echo [3] Scrcpy
-echo [4] Winutil
-echo [5] Exit
+echo  [1] SFC and DISM (File Repair)
+echo  [2] spicetify update(Extra option)
+echo  [3] Scrcpy
+echo  [4] Winutil
+echo  [5] Exit
 REM set /p choice=Choose an option: 
-choice /N /C 12345k /M "Chose an option:"
+choice /N /C 12345k /M " Chose an option:"
 REM choice /C k /N 
 
 if errorlevel 6 goto :ky
@@ -37,6 +37,19 @@ if errorlevel 2 goto :spice
 if errorlevel 1 goto :sfc
 
 :sfc
+color 0b
+cls
+echo.
+echo  It will take some time to check for files and to remove, 
+timeout /t 2 >nul
+echo  That is corrupted, or temporary cache files.
+timeout /t 2 >nul
+echo  do you want to run this command??
+choice /n /c YN /m "  Press Y to continue or Press N to cancel it:"
+
+if errorlevel 2 goto :menu
+
+if errorlevel 1 (
 Title System File Repair
 timeout /t 2 >nul
 echo Running system file repair...
@@ -66,6 +79,8 @@ choice /n /c 12 /m "Chose and option:"
 
 if errorlevel 2 goto exit
 if errorlevel 1 goto menu
+
+)
 
 :underway
 color 0C
