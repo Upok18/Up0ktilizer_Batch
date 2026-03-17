@@ -184,9 +184,10 @@ if errorlevel 1 goto menuupi
 title Select
 color 0b
 cls
-set browser_count=Coming soon
+set browser_count=2
 set multi_count=1
 set utili_count=1
+set doc_count=1
 echo.
 echo     --------------------------------------------------------------------------------
 echo                              Select Any Option to Continue...
@@ -452,16 +453,19 @@ echo.
 echo --------------------------------------------------------------------------------------------------------
 echo                                           D O C U M E N T S
 echo ========================================================================================================
-echo [1] Notepad++           More Coming Soon! 
+echo [1] Notepad++                             More Coming Soon! 
 echo ========================================================================================================
-echo Available Browsers:%utili_count%
+echo Available Docs:%doc_count%
 echo.
 echo [B] Go back [C] Exit
 choice /n /c 1BC /m "Choose an option:"
 
 if errorlevel 3 goto Exit
 if errorlevel 2 goto upi
-if errorlevel 1 (
+if errorlevel 1 goto :aboutnotepad+
+
+
+:aboutnotepad+
 title About Notepad++
 cls 
 echo.
@@ -473,9 +477,9 @@ REM echo [1] Install [2] Go Back
 echo.
 choice /n /c 12 /m "[1] Install [2] Go Back: "
 
-if errorlevel 2 goto :upi
+if errorlevel 2 goto :docupi
 if errorlevel 1 goto :notepad+
-)
+
 
 :notepad+
 title Installing
