@@ -1,5 +1,5 @@
 @echo off
-set tool_version=1.6
+set tool_version=1.1
 title MANU
 color 0a
 cls
@@ -186,14 +186,16 @@ set browser_count=Coming soon
 set multi_count=1
 set utili_count=1
 echo.
-echo     ------------------------------------------------------------------------------
-echo                             Select Any Option to Continue...
-echo     ==============================================================================
-echo     [1] Browsers          [2]Multimedias          [3]Utilities          [4]Go Back
-echo     ==============================================================================
-choice /n /c 1234 /m "    :"
+echo     --------------------------------------------------------------------------------
+echo                              Select Any Option to Continue...
+echo     ================================================================================
+echo     [1] Browsers          [2]Multimedias          [3]Utilities          [4]Documents
+echo                                    [5] Documents
+echo     ================================================================================
+choice /n /c 12345 /m "    :"
 
-if errorlevel 4 goto up
+if errorlevel 5 goto up
+if errorlevel 4 goto docupi
 if errorlevel 3 goto utiupi
 if errorlevel 2 goto multiupi
 if errorlevel 1 goto broupi
@@ -387,7 +389,7 @@ REM echo [1] Install [2] Go Back
 echo.
 choice /n /c 12 /m "[1] Install [2] Go Back: "
 
-if errorlevel 2 goto 
+if errorlevel 2 goto upi
 
 if errorlevel 1 (
 title Installing
@@ -437,6 +439,57 @@ choice /n /c 12 /m "[1]Go back  [2]Exit:"
 if errorlevel 2 goto :exit
 if errorlevel 1 goto :winutil
 
+:docupi
+title Documents
+color 0a
+cls
+REM call :underway 
+REM goto :up
+Echo.
+echo.
+echo --------------------------------------------------------------------------------------------------------
+echo                                           D O C U M E N T S
+echo ========================================================================================================
+echo [1] Notepad++           More Coming Soon! 
+echo ========================================================================================================
+echo Available Browsers:%utili_count%
+echo.
+echo [B] Go back [C] Exit
+choice /n /c 1BC /m "Choose an option:"
+
+if errorlevel 3 goto Exit
+if errorlevel 2 goto upi
+if errorlevel 1 (
+title About Notepad++
+cls 
+echo.
+echo Notepad++ is a free (as in “free speech” and also as in “free beer”) source code editor and 
+echo Notepad replacement that supports several languages. Running in the MS Windows 
+echo environment, its use is governed by GNU General Public License.
+timeout /t 1 >nul
+REM echo [1] Install [2] Go Back 
+echo.
+choice /n /c 12 /m "[1] Install [2] Go Back: "
+
+if errorlevel 2 goto :upi
+if errorlevel 1 goto :notepad+
+)
+
+:notepad+
+title Installing
+cls
+echo.
+timeout /t 1 >nul
+echo Installing Notepad++...
+timeout /t 3 >nul
+winget install -e --id Notepad++.Notepad++ --silent --accept-package-agreements --accept-source-agreements
+timeout /t 2 >nul
+echo Done 
+echo. 
+echo Press any key to continue....
+pause >nul
+goto esc
+)
 
 :esc 
 echo [1] Up0ktilizer menu   [2] exit
