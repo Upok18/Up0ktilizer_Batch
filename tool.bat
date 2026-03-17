@@ -185,8 +185,8 @@ title Select
 color 0b
 cls
 set browser_count=2
-set multi_count=1
-set utili_count=1
+set multi_count=2
+set utili_count=2
 set doc_count=1
 echo.
 echo     --------------------------------------------------------------------------------
@@ -348,7 +348,7 @@ choice /n /c 12 /m "[1] Install [2] Go Back: "
 if errorlevel 2 goto :multiupi
 
 if errorlevel 1 (
-
+cls
 ::vlc
 echo Installing VLC...
 timeout /t 3 >nul
@@ -376,7 +376,7 @@ choice /n /c 12 /m "[1] Install [2] Go Back: "
 if errorlevel 2 goto :multiupi
 
 if errorlevel 1 (
-
+cls
 ::auda
 echo Installing Audacity...
 timeout /t 3 >nul
@@ -400,16 +400,89 @@ echo.
 echo --------------------------------------------------------------------------------------------------------
 echo                                           U T I L I T I E S
 echo ========================================================================================================
-echo [1] Github           More Coming Soon! 
+echo [1] Github           [2] Winrar           [3]  7-zip(X)           [4] Power toys
 echo ========================================================================================================
 echo Available Browsers:%utili_count%
 echo.
 echo [B] Go back [C] Exit
-choice /n /c 1BC /m "Choose an option:"
+choice /n /c 1234BC /m "Choose an option:"
 
-if errorlevel 3 goto Exit
-if errorlevel 2 goto upi
+if errorlevel 6 goto :exit
+if errorlevel 5 goto :upi
+
+if errorlevel 4 (
+call :underway
+goto :utiupi
+)
+
+if errorlevel 3 (
+call :underway
+goto :utiupi
+)
+
+if errorlevel 2 goto :aboutwinrar
 if errorlevel 1 goto :aboutgit
+
+:aboutpower
+title About Powertoys
+cls 
+echo.
+echo With GitHub Desktop, you can interact with GitHub using a GUI instead of the command line or a web browser. 
+echo You can use GitHub Desktop to complete most Git commands from your desktop, such as pushing to, pulling from, 
+echo and cloning remote repositories, attributing commits, and creating pull requests, with visual confirmation of changes.
+timeout /t 1 >nul
+REM echo [1] Install [2] Go Back 
+echo.
+choice /n /c 12 /m "[1] Install [2] Go Back: "
+
+if errorlevel 2 goto upi
+
+if errorlevel 1 (
+
+title Installing
+cls
+echo.
+timeout /t 1 >nul
+echo Installing Github...
+timeout /t 3 >nul
+winget install -e --id GitHub.GitHubDesktop --silent --accept-package-agreements --accept-source-agreements
+timeout /t 2 >nul
+echo Done 
+echo. 
+echo Press any key to continue....
+pause >nul
+goto esc
+)
+
+:aboutwinrar
+title About Winrar
+cls 
+echo.
+echo WinRAR is a powerful archiver (RAR and ZIP) and 
+echo extractor tool that can open all popular file formats.
+timeout /t 1 >nul
+REM echo [1] Install [2] Go Back 
+echo.
+choice /n /c 12 /m "[1] Install [2] Go Back: "
+
+if errorlevel 2 goto :utiupi
+
+if errorlevel 1 (
+
+title Installing
+cls
+echo.
+timeout /t 1 >nul
+echo Installing Winrar...
+timeout /t 3 >nul
+winget install -e --id RARLab.WinRAR --silent --accept-package-agreements --accept-source-agreements
+timeout /t 2 >nul
+echo Done 
+echo. 
+echo Press any key to continue....
+pause >nul
+goto esc
+)
 
 :aboutgit
 title About Github Desktop
@@ -424,9 +497,9 @@ echo.
 choice /n /c 12 /m "[1] Install [2] Go Back: "
 
 if errorlevel 2 goto upi
-if errorlevel 1 goto :git
 
-:git
+if errorlevel 1 (
+
 title Installing
 cls
 echo.
@@ -440,7 +513,7 @@ echo.
 echo Press any key to continue....
 pause >nul
 goto esc
-
+)
 
 :docupi
 title Documents
