@@ -379,9 +379,10 @@ choice /n /c 1BC /m "Choose an option:"
 
 if errorlevel 3 goto Exit
 if errorlevel 2 goto upi
+if errorlevel 1 goto :aboutgit
 
-if errorlevel 1 (
-title Github Desktop
+:aboutgit
+title About Github Desktop
 cls 
 echo.
 echo With GitHub Desktop, you can interact with GitHub using a GUI instead of the command line or a web browser. 
@@ -393,8 +394,9 @@ echo.
 choice /n /c 12 /m "[1] Install [2] Go Back: "
 
 if errorlevel 2 goto upi
+if errorlevel 1 goto :git
 
-if errorlevel 1 (
+:git
 title Installing
 cls
 echo.
@@ -408,39 +410,7 @@ echo.
 echo Press any key to continue....
 pause >nul
 goto esc
-)
 
-)
-
-:titus
-title Chris Titus
-color 0b
-cls
-REM echo x=MsgBox("Do not panic It takes time to load",0+64,"Chris Titus") > "%temp%\info.vbs"
-REM echo WScript.Quit(x) >> "%temp%\info.vbs"
-
-::Run popup
-REM cscript //nologo "%temp%\info.vbs"
-REM set result=%errorlevel%
-
-::Delete temp script
-REM del "%temp%\info.vbs"
-echo.
-echo It recuires to run in Administrator mode to run tweaks..
-echo.
-timeout /t 3 >nul
-echo Running Chris Titus Utilities...
-timeout /t 1 >nul
-REM powershell -command "irm christitus.com/win | iex"
-
-powershell -Command "Start-Process powershell -Verb RunAs -Wait -ArgumentList '-NoProfile -ExecutionPolicy Bypass -Command ""irm https://christitus.com/win | iex""'"
-
-timeout /t 1 >nul
-echo.
-choice /n /c 12 /m "[1]Go back  [2]Exit:"
-
-if errorlevel 2 goto :exit
-if errorlevel 1 goto :winutil
 
 :docupi
 title Documents
@@ -496,6 +466,36 @@ echo Press any key to continue....
 pause >nul
 goto esc
 )
+
+:titus
+title Chris Titus
+color 0b
+cls
+REM echo x=MsgBox("Do not panic It takes time to load",0+64,"Chris Titus") > "%temp%\info.vbs"
+REM echo WScript.Quit(x) >> "%temp%\info.vbs"
+
+::Run popup
+REM cscript //nologo "%temp%\info.vbs"
+REM set result=%errorlevel%
+
+::Delete temp script
+REM del "%temp%\info.vbs"
+echo.
+echo It recuires to run in Administrator mode to run tweaks..
+echo.
+timeout /t 3 >nul
+echo Running Chris Titus Utilities...
+timeout /t 1 >nul
+REM powershell -command "irm christitus.com/win | iex"
+
+powershell -Command "Start-Process powershell -Verb RunAs -Wait -ArgumentList '-NoProfile -ExecutionPolicy Bypass -Command ""irm https://christitus.com/win | iex""'"
+
+timeout /t 1 >nul
+echo.
+choice /n /c 12 /m "[1]Go back  [2]Exit:"
+
+if errorlevel 2 goto :exit
+if errorlevel 1 goto :winutil
 
 :esc 
 echo [1] Up0ktilizer menu   [2] exit
