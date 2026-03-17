@@ -325,20 +325,22 @@ choice /n /c 12BC /m "Choose an option:"
 
 if errorlevel 4 goto Exit
 if errorlevel 3 goto upi
+if errorlevel 2 goto :aboutvlc
+if errorlevel 1 goto :aboustauda
 
-if errorlevel 2 (
-call :underway
-goto menuupi
-)
-
-if %errorlevel%==1 (
-title Audacity
+:aboutvlc
+title About VLC
 cls
 echo.
-echo Audacity is the world’s most popular free software for recording and editing audio. 
-echo So if you're producing music, a podcast, or just playing around with audio,
-echo Audacity is for you.
-timeout /t 1 >nul
+echo VLC is a free and open source cross-platform multimedia player and 
+echo framework that plays most multimedia files as well as DVDs, Audio CDs, 
+echo VCDs, and various streaming protocols. Simple, 
+echo fast and powerful ✓ Plays everything - Files, Discs, Webcams, Devices and Streams. 
+echo ✓ Pays most codecs with no codec packs needed - MPEG-2, MPEG-4, H.264, MKV, WebM, 
+echo WMV, MP3... ✓ Runs on all platforms - Windows, Linux, Mac OS X, Unix, iOS, 
+echo Android ... ✓ Completely Free - no spyware, no ads and no user tracking.
+
+timeout /t 2 >nul
 echo.
 REM echo [1] Install [2] Go Back 
 choice /n /c 12 /m "[1] Install [2] Go Back: "
@@ -346,6 +348,36 @@ choice /n /c 12 /m "[1] Install [2] Go Back: "
 if errorlevel 2 goto :multiupi
 
 if errorlevel 1 (
+
+::vlc
+echo Installing VLC...
+timeout /t 3 >nul
+winget install -e --id VideoLAN.VLC --silent --accept-package-agreements --accept-source-agreements
+timeout /t 2 >nul
+echo Done 
+echo. 
+echo Press any key to continue....
+pause >nul
+goto esc
+)
+
+:aboustauda
+title About Audacity
+cls
+echo.
+echo Audacity is the world’s most popular free software for recording and editing audio. 
+echo So if you're producing music, a podcast, or just playing around with audio,
+echo Audacity is for you.
+timeout /t 2 >nul
+echo.
+REM echo [1] Install [2] Go Back 
+choice /n /c 12 /m "[1] Install [2] Go Back: "
+
+if errorlevel 2 goto :multiupi
+
+if errorlevel 1 (
+
+::auda
 echo Installing Audacity...
 timeout /t 3 >nul
 winget install -e --id Audacity.Audacity --silent --accept-package-agreements --accept-source-agreements
@@ -355,8 +387,6 @@ echo.
 echo Press any key to continue....
 pause >nul
 goto esc
-)
-
 )
  
 :utiupi
