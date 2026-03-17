@@ -99,6 +99,8 @@ if "%errorlevel%"=="1" goto :menu
 
 
 :scrcpy
+call :underway
+goto :menu
 color 09
 title Scrcpy
 cls 
@@ -190,7 +192,7 @@ echo     -----------------------------------------------------------------------
 echo                              Select Any Option to Continue...
 echo     ================================================================================
 echo     [1] Browsers          [2]Multimedias          [3]Utilities          [4]Documents
-echo                                    [5] Documents
+echo                                    [5] Go Back
 echo     ================================================================================
 choice /n /c 12345 /m "    :"
 
