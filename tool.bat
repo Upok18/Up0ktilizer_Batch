@@ -667,6 +667,7 @@ REM timeout /t 3 >nul
 REM shutdown /a >nul
 timeout /t 2 >nul
 echo finally a world without one less gay 
+timeout /t 4 >nul
 goto :exit
 
 :exit
