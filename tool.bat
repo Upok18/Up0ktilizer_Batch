@@ -621,6 +621,8 @@ REM cls
 goto menu
 
 :ky
+title Easter egg
+echo.
 echo You have found the Easter egg!
 timeout /t 2 >nul
 echo Kaiyum femboy 
@@ -641,7 +643,8 @@ goto menu
 
 :arifin
 title Easter egg
-echo You have found the Easster egg!
+echo.
+echo You have found the Easter egg!
 timeout /t 2 >nul
 echo Arifina :)
 timeout /t 2 >nul
