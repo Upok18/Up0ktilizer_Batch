@@ -29,7 +29,7 @@ REM set /p choice=Choose an option:
 choice /N /C 12345k /M " Choose an option:"
 REM choice /C k /N 
 
-if errorlevel 6 goto :arifin
+REM if errorlevel 6 goto :arifin
 if errorlevel 5 goto :exit
 if errorlevel 4 goto :winutil 
 if errorlevel 3 goto :scrcpy
