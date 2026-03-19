@@ -648,6 +648,13 @@ echo You have found the Easter egg!
 timeout /t 2 >nul
 echo Arifina :)
 timeout /t 2 >nul
+echo Our cute little bts army
+timeout /t 2 >nul
+start https://i.imgur.com/Wd3b9XH.png 
+pause
+timeout /t 2 >nul
+echo Also
+timeout /t 2 >nul
 echo Gay boy..
 timeout /t 2 >nul
 echo I nkow what you send to your homies >:)
@@ -657,6 +664,7 @@ timeout /t 3 >nul
 start https://i.imgur.com/XayYtaj.png
 REM echo press any key to continue... 
 pause
+REM goto :menu
 echo also I had to to say something...
 timeout /t 3 >nul
 title Malware
