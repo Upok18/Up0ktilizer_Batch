@@ -84,6 +84,8 @@ if errorlevel 1 goto menu
 
 :underway
 color 0C
+echo.
+echo.
 echo This command is stil in developement....
 timeout /t 2 >NULL
 echo It will be added soon...
@@ -97,6 +99,9 @@ REM choice /N /C 12 /M "Choose an option:"
 if "%errorlevel%"=="2" goto :exit
 if "%errorlevel%"=="1" goto :menu
 
+:spice
+call :underway
+goto :menu
 
 :scrcpy
 call :underway
