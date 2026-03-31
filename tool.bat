@@ -26,10 +26,10 @@ echo  [3] Scrcpy
 echo  [4] Winutil
 echo  [5] Exit
 REM set /p choice=Choose an option: 
-choice /N /C 12345k /M " Choose an option:"
+choice /N /C 12345 /M " Choose an option:"
 REM choice /C k /N 
 
-if errorlevel 6 goto :arifin
+rem if errorlevel 6 goto :arifin
 if errorlevel 5 goto :exit
 if errorlevel 4 goto :winutil 
 if errorlevel 3 goto :scrcpy
@@ -150,9 +150,9 @@ echo [2] Chris Titus(Recommended)
 echo ============================
 echo [3] Go Back
 echo ============================
-choice /c 123k /n /m "Choose an option:"
+choice /c 123 /n /m "Choose an option:"
 
-if errorlevel 4 goto :ky
+rem if errorlevel 4 goto :ky
 if errorlevel 3 goto :menu
 if errorlevel 2 goto :titus
 if errorlevel 1 goto :up
