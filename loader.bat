@@ -4,7 +4,7 @@ set tempTool=%temp%\up0k_tool.bat
 set tempVer=%temp%\up0k_version.txt
 
 set toolURL=https://raw.githubusercontent.com/Upok18/Up0ktilizer_Batch/refs/heads/main/tool.bat?%random%
-set verURL=https://raw.githubusercontent.com/Upok18/Up0ktilizer/refs/heads/main/version.txt?%random%
+set verURL=https://raw.githubusercontent.com/Upok18/Up0ktilizer_Batch/refs/heads/main/version.txt?%random%
 
 echo Checking latest version...
 
