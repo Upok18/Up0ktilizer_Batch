@@ -4,15 +4,11 @@ title MANU
 color 0a
 cls
 
-set url=https://raw.githubusercontent.com/Upok18/Up0ktilizer_Batch/refs/heads/main/file.exe
-rem set url=https://drive.google.com/file/d/1g3FpaAJ3FyBsXpOzsF60tjE1zIzsozWj/view?usp=sharing
-set file=%temp%\\file.exe
+
 set tempascii=https://raw.githubusercontent.com/Upok18/Up0ktilizer/refs/heads/main/Ascii.txt
 curl -s -o "%temp%\Ascii.txt" https://raw.githubusercontent.com/Upok18/Up0ktilizer_Batch/refs/heads/main/Ascii.txt
-curl -s -L -o "%file%" "%url%"
 
 REM call :changelog
-goto :menufake
 
 :menufake
 title MANU v%tool_version%
