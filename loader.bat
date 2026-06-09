@@ -1,23 +1,23 @@
 @echo off
 
 set tempTool=%temp%\up0k_tool.bat
-set tempVer=%temp%\up0k_version.txt
+rem set tempVer=%temp%\up0k_version.txt
 
 set toolURL=https://raw.githubusercontent.com/Upok18/Up0ktilizer_Batch/refs/heads/main/tool.bat?%random%
-set verURL=https://raw.githubusercontent.com/Upok18/Up0ktilizer_Batch/refs/heads/main/version.txt?%random%
+rem set verURL=https://raw.githubusercontent.com/Upok18/Up0ktilizer_Batch/refs/heads/main/version.txt?%random%
 
-echo Checking latest version...
+rem echo Checking latest version...
 
-curl -sL "%verURL%" -o "%tempVer%"
-set /p remoteVer=<"%tempVer%"
+rem curl -sL "%verURL%" -o "%tempVer%"
+rem set /p remoteVer=<"%tempVer%"
 
-echo Downloading latest tool...
+echo Running latest tool...
 curl -sL "%toolURL%" -o "%tempTool%"
 
 call "%tempTool%"
 
 echo Cleaning up...
 del "%tempTool%" >nul 2>&1
-del "%tempVer%" >nul 2>&1
+rem del "%tempVer%" >nul 2>&1
 
 pause
