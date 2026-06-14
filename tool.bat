@@ -33,7 +33,7 @@ cls
 echo =========================================================================================================
 type "%temp%\Ascii.txt"
 echo =========================================================================================================
-echo Hello, "%saved_name%"
+echo Hello, %saved_name%
 echo =========================================================================================================
 REM echo ==============================
 REM echo       Up0ktilizer (v%tool_version%)
@@ -50,7 +50,7 @@ REM choice /C k /N
 
 rem if errorlevel 6 goto :arifin
 if errorlevel 4 goto :exit
-if errorlevel 3 del "%temp_file%"
+if errorlevel 3 :del_username
 if errorlevel 2 goto :winutil 
 REM if errorlevel 3 goto :scrcpy
 rem if errorlevel 2 goto :spice
@@ -102,6 +102,25 @@ if errorlevel 1 goto menu
 
 )
 
+:del_username
+cls
+echo ================================================
+echo Are you sure you want to delete the username??
+echo ================================================
+choice /n /c YN /m "  Press Y to continue or Press N to cancel it:"
+
+if errorlevel 2 goto :menu
+
+if errorlevel 1 (
+cls
+echo Deleting Username
+del "%temp_file%"
+timeout /t 5
+echo Done
+pause
+exit
+) 
+
 :underway
 color 0C
 echo.
@@ -119,49 +138,6 @@ REM choice /N /C 12 /M "Choose an option:"
 if "%errorlevel%"=="2" goto :exit
 if "%errorlevel%"=="1" goto :menu
 
-:spice
-call :underway
-goto :menu
-
-:scrcpy
-call :underway
-goto :menu
-color 09
-title Scrcpy
-cls 
-goto underway
-echo Running Scrcpy...
-dir "scrcpy.exe" /s /b 2>nul
-scrcpy --prefer-text --video-playback --audio-source=playback --max-video-size 1M --audio-bit-rate 6M --render-driver=opengl
-
-::title Name
-::cls 
-::echo.
-::echo Details
-::timeout /t 1 >nul
-::REM echo [1] Install [2] Go Back 
-::echo.
-::choice /n /c 12 /m "[1] Install [2] Go Back: "
-
-::if errorlevel 2 goto 
-
-::if errorlevel 1 (
-::title Installing
-::cls
-::echo.
-::timeout /t 1 >nul
-::echo Installing Name...
-::timeout /t 3 >nul
-::winget install -e --id Name.Name --silent --accept-package-agreements --accept-source-agreements
-::timeout /t 2 >nul
-::echo Done 
-::echo. 
-::echo Press any key to continue....
-::pause >nul
-::goto esc
-::)
-
-::)
 
 :winutil
 title Winutil
