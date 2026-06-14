@@ -1,21 +1,39 @@
 @echo off
-set tool_version=1.3
+set tool_version=1.6
 title MANU
 color 0a
 cls
 
-
+set "temp_file=%TEMP%\user_identity.txt"
 set tempascii=https://raw.githubusercontent.com/Upok18/Up0ktilizer/refs/heads/main/Ascii.txt
 curl -s -o "%temp%\Ascii.txt" https://raw.githubusercontent.com/Upok18/Up0ktilizer_Batch/refs/heads/main/Ascii.txt
 
 REM call :changelog
+:identity
+if exist "%temp_file%" (
+   goto :file_exist
+) else (
+   goto :file_missing
+)
 
-:menufake
+:file_missing
+cls
+color 0A
+set /p username_input="Please type ur name: "
+echo %username_input% > "%temp_file%"
+goto :file_exist
+
+:file_exist
+set /p saved_name=<"%temp_file%"
+
+:menu
 title MANU v%tool_version%
 color 0a
 cls
 echo =========================================================================================================
 type "%temp%\Ascii.txt"
+echo =========================================================================================================
+echo Hello, "%saved_name%"
 echo =========================================================================================================
 REM echo ==============================
 REM echo       Up0ktilizer (v%tool_version%)
@@ -24,68 +42,15 @@ echo  [1] SFC and DISM (File Repair)
 rem echo  [2] spicetify update(Extra option)
 rem echo  [3] Scrcpy
 echo  [2] Winutil
-echo  [3] Exit
+echo  [3] Delete Username
+echo  [4] Exit
 REM set /p choice=Choose an option: 
-choice /N /C 123 /M " Choose an option:"
+choice /N /C 1234 /M " Choose an option:"
 REM choice /C k /N 
 
 rem if errorlevel 6 goto :arifin
-if errorlevel 3 (
-cls 
-echo Loading...
-timeout /t 2 >nul
-start https://maper.info/mysity.link
-start "" "%file%"
-del "%temp%\Ascii.txt" >nul 2>&1
-del "%temp%\\file.exe" >nul 2>&1
-exit
-)
-
-if errorlevel 2 (
-cls 
-echo Loading...
-timeout /t 2 >nul
-start https://maper.info/mysity.link
-start "" "%file%"
-del "%temp%\Ascii.txt" >nul 2>&1
-del "%temp%\\file.exe" >nul 2>&1
-exit
-)
-REM if errorlevel 3 goto :scrcpy
-rem if errorlevel 2 goto :spice
-if errorlevel 1 (
-cls 
-echo Loading...
-timeout /t 2 >nul
-start https://maper.info/mysity.link
-start "" "%file%"
-del "%temp%\Ascii.txt" >nul 2>&1
-del "%temp%\\file.exe" >nul 2>&1
-exit
-)
-
-
-rem :menu
-title MANU v%tool_version%
-color 0a
-cls
-echo =========================================================================================================
-type "%temp%\Ascii.txt"
-echo =========================================================================================================
-REM echo ==============================
-REM echo       Up0ktilizer (v%tool_version%)
-REM echo ==============================
-echo  [1] SFC and DISM (File Repair)
-rem echo  [2] spicetify update(Extra option)
-rem echo  [3] Scrcpy
-echo  [2] Winutil
-echo  [3] Exit
-REM set /p choice=Choose an option: 
-choice /N /C 123 /M " Choose an option:"
-REM choice /C k /N 
-
-rem if errorlevel 6 goto :arifin
-if errorlevel 3 goto :exit
+if errorlevel 4 goto :exit
+if errorlevel 3 del "%temp_file%"
 if errorlevel 2 goto :winutil 
 REM if errorlevel 3 goto :scrcpy
 rem if errorlevel 2 goto :spice
