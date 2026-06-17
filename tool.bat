@@ -50,7 +50,7 @@ REM choice /C k /N
 
 rem if errorlevel 6 goto :arifin
 if errorlevel 4 goto :exit
-if errorlevel 3 :del_username
+if errorlevel 3 goto :del_username
 if errorlevel 2 goto :winutil 
 REM if errorlevel 3 goto :scrcpy
 rem if errorlevel 2 goto :spice
